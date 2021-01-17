@@ -9,20 +9,21 @@ class App extends Component {
     };
 
     removeCharacter = index => {
-        const { characters } = this.state
+        const { characters } = this.state;
         return axios.delete('http://localhost:5000/users/'+characters[index]['id'])
-       .then(function (response) {
-          this.setState({
-            characters: characters.filter((character, i) => {
-              return i !== index
-            }),
+          .then((response) => {
+            console.log("Reached")
+              this.setState({
+                characters: characters.filter((character, i) => {
+                  return i !== index
+                }),
+              })
+              return response;
           })
-          return response;
-       })
-       .catch(function (error) {
-         console.log(error);
-         return false;
-       });
+          .catch(function (error) {
+            console.log(error);
+            return false;
+          });
         
     }
 
